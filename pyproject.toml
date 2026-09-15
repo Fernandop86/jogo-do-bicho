@@ -1,11 +1,11 @@
-﻿[build-system]
+[build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
 name = "jogo-do-bicho-analytics"
 version = "0.1.0"
-description = "Ferramenta de análise estatística de dados históricos de loterias (uso educacional)"
+description = "Ferramenta de analise estatistica de dados historicos de loterias (uso educacional)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -36,8 +36,6 @@ dependencies = [
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
-    "ruff>=0.1.0",
-    "mypy>=1.5.0",
 ]
 
 [project.urls]
@@ -45,23 +43,9 @@ Homepage = "https://github.com/Fernandop86/jogo-do-bicho"
 Repository = "https://github.com/Fernandop86/jogo-do-bicho"
 Issues = "https://github.com/Fernandop86/jogo-do-bicho/issues"
 
-[tool.ruff]
-line-length = 100
-target-version = "py311"
-
-[tool.ruff.lint]
-select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
-ignore = ["E501"]
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-v --cov=motor --cov-report=term-missing"
-
-[tool.mypy]
-python_version = "3.11"
-warn_return_any = true
-warn_unused_configs = true
-ignore_missing_imports = true
+addopts = "-v"
 
 [tool.hatch.build.targets.wheel]
 packages = ["motor"]

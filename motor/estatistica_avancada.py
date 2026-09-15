@@ -1,4 +1,11 @@
-﻿import numpy as np
+﻿"""
+Funções estatísticas avançadas para análise do Jogo do Bicho.
+
+Inclui:
+- chi_quadrado_uniforme: testa se distribuição difere de uniforme
+- zscore_por_valor: calcula z-score de cada valor
+"""
+import numpy as np
 import pandas as pd
 from scipy import stats
 
@@ -7,13 +14,26 @@ def chi_quadrado_uniforme(df, coluna="milhar"):
     """
     Testa se a distribuição dos valores difere de uniforme.
 
-    CORRIGIDO: usa len(df) como n total, não a soma das contagens.
+    Corrigido:
+    - usa len(df) como n total, nao a soma das contagens
+    - trata caso de 1 so categoria (retorna p=1.0)
     """
-
     n_total = len(df)
     contagem = df[coluna].astype(str).value_counts()
     observado = contagem.values
     n_valores = len(contagem)
+
+    # Caso especial: 1 so categoria -> nao da pra calcular chi2
+    if n_valores < 2:
+        return {
+            "chi2": 0.0,
+            "p_value": 1.0,
+            "gl": 0,
+            "n": int(n_total),
+            "n_valores": n_valores,
+            "esperado_por_valor": float(n_total),
+            "interpretacao": "compativel com uniformidade (acaso)",
+        }
 
     esperado = np.full(n_valores, n_total / n_valores)
 
@@ -42,11 +62,10 @@ def chi_quadrado_uniforme(df, coluna="milhar"):
 def zscore_por_valor(df, coluna="milhar"):
     """
     Para cada valor, calcula:
-    z = (observado - esperado) / desvio padrão esperado.
+    z = (observado - esperado) / desvio padrao esperado.
 
-    CORRIGIDO: usa len(df) como n total.
+    Corrigido: usa len(df) como n total.
     """
-
     n_total = len(df)
     contagem = df[coluna].astype(str).value_counts()
     k = df[coluna].nunique()
