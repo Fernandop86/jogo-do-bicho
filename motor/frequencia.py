@@ -1,5 +1,4 @@
-﻿import pandas as pd
-
+﻿
 
 def frequencia_grupos(df):
     return (

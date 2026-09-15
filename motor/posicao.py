@@ -1,5 +1,4 @@
-﻿import pandas as pd
-
+﻿
 
 def adicionar_posicao(df, premios_por_concurso=5, concurso_inicial=1000):
     """

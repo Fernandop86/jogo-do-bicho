@@ -1,14 +1,11 @@
-﻿import re
-import pandas as pd
-
+﻿
 from motor.cruzamento import tabela_analise
-from motor.features import construir_features
-from motor.score import calcular_score, calcular_score_v2
 from motor.estatistica_avancada import (
     chi_quadrado_uniforme,
     zscore_por_valor,
 )
-
+from motor.features import construir_features
+from motor.score import calcular_score, calcular_score_v2
 
 # ------------------------------------------------------------
 # Base de conhecimento: tudo que a IA precisa saber

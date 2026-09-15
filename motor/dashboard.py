@@ -1,13 +1,11 @@
-﻿import pandas as pd
 
 from motor.cruzamento import tabela_analise
-from motor.features import construir_features
-from motor.score import calcular_score, calcular_score_v2
 from motor.estatistica_avancada import (
     chi_quadrado_uniforme,
     zscore_por_valor,
 )
-
+from motor.features import construir_features
+from motor.score import calcular_score, calcular_score_v2
 
 SEPARADOR = "=" * 72
 SUBSEPARADOR = "-" * 72
@@ -18,7 +16,6 @@ def _marcar_perfil(linha):
     Retorna uma etiqueta de perfil com base em
     frequencia_total, atraso e recencia_10.
     """
-    freq = linha.get("frequencia_total", 0)
     atraso = linha.get("atraso", 0)
     rec = linha.get("recencia_10", 0)
     rep = linha.get("repeticoes_consecutivas", 0)
@@ -102,7 +99,7 @@ def renderizar_dashboard(
         linha_dict = linha.to_dict()
         linha_dict["repeticoes_consecutivas"] = rep
         perfil = _marcar_perfil(linha_dict)
-        print(f"  {str(linha[coluna]):>6}   {perfil}")
+        print(f"  {linha[coluna]!s:>6}   {perfil}")
 
     # ------------------------------------------------------------
     # 5. Chi-quadrado

@@ -1,4 +1,4 @@
-﻿import pandas as pd
+import pandas as pd
 
 from motor.cruzamento import tabela_analise
 from motor.score import calcular_score
@@ -14,13 +14,13 @@ def backtest(
     top_ns=(1, 3, 5),
 ):
     """
-    Simula o uso do score ao longo do histórico.
+    Simula o uso do score ao longo do histÃƒÂ³rico.
 
     Para cada ponto de corte, calcula o score usando
-    apenas os dados até ali e verifica a posição do
-    próximo número sorteado no ranking.
+    apenas os dados atÃƒÂ© ali e verifica a posiÃƒÂ§ÃƒÂ£o do
+    prÃƒÂ³ximo nÃƒÂºmero sorteado no ranking.
 
-    Retorna um dict com métricas.
+    Retorna um dict com mÃƒÂ©tricas.
     """
 
     if janelas_recencia is None:
@@ -42,14 +42,14 @@ def backtest(
         tabela = tabela_analise(df_passado, coluna, janelas=janelas_recencia)
 
         if coluna_recencia not in tabela.columns:
-            # janela escolhida não existe — pula
+            # janela escolhida nÃƒÂ£o existe Ã¢â‚¬â€ pula
             continue
 
         ranking = calcular_score(tabela, pesos=pesos, coluna_recencia=coluna_recencia)
 
-        # Em que posição está o valor sorteado?
+        # Em que posiÃƒÂ§ÃƒÂ£o estÃƒÂ¡ o valor sorteado?
         valor_futuro = str(futuro).zfill(4) if coluna == "milhar" else str(futuro)
-        # Para milhar, precisamos do milhar do número futuro
+        # Para milhar, precisamos do milhar do nÃƒÂºmero futuro
         if coluna == "milhar":
             valor_futuro = str(futuro).zfill(4)
 
@@ -89,16 +89,15 @@ def backtest_comparativo(
     premios_por_concurso=5,
 ):
     """
-    Roda o backtest para v1, v2 e baseline aleatório,
+    Roda o backtest para v1, v2 e baseline aleatÃƒÂ³rio,
     devolvendo uma tabela comparativa.
     """
 
-    import random
     import pandas as pd
 
-    from motor.processamento import processar_numero
     from motor.cruzamento import tabela_analise
     from motor.features import construir_features
+    from motor.processamento import processar_numero
     from motor.score import calcular_score, calcular_score_v2
 
     if janelas_recencia is None:
@@ -145,18 +144,18 @@ def backtest_comparativo(
 
         valor_futuro = str(futuro).zfill(4)
 
-        def rank_de(ranking):
+        def rank_de(ranking, valor_alvo):
             posicoes = ranking[coluna].astype(str).tolist()
-            if valor_futuro not in posicoes:
+            if valor_alvo not in posicoes:
                 return None
-            return posicoes.index(valor_futuro) + 1
+            return posicoes.index(valor_alvo) + 1
 
         registros.append({
             "corte": corte,
             "sorteado": valor_futuro,
-            "rank_v1": rank_de(r_v1),
-            "rank_v2": rank_de(r_v2),
-            "rank_rand": rank_de(r_rand),
+            "rank_v1": rank_de(r_v1, valor_futuro),
+            "rank_v2": rank_de(r_v2, valor_futuro),
+            "rank_rand": rank_de(r_rand, valor_futuro),
             "total_candidatos": len(r_v1),
         })
 

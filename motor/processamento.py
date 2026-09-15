@@ -1,7 +1,4 @@
-﻿from motor.grupos import (
-    dezena_para_grupo,
-    grupo_para_animal
-)
+﻿from motor.grupos import dezena_para_grupo, grupo_para_animal
 
 
 def processar_numero(numero):
