@@ -1,40 +1,54 @@
-# 🎰 Jogo do Bicho 2024 — Dashboard
+$readme = @'
+# 🎰 Jogo do Bicho Analytics
 
-Dashboard interativo para análise estatística do Jogo do Bicho.
+> **Ferramenta de análise estatística de dados históricos de loterias — para fins educacionais e de pesquisa.**
 
-## 📊 O que faz
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-red.svg)](https://streamlit.io/)
 
-- Carrega 10.325 prêmios do histórico 2024
-- Analisa frequência de grupos, dezenas, centenas e milhares
-- Gera sugestões diárias baseadas em dados históricos
-- Executa backtest de apostas com R$ 5/dia
-- Gráficos interativos e tabelas detalhadas
+---
+
+## ⚠️ Aviso Legal
+
+Este projeto é uma **ferramenta de análise estatística** com finalidade
+**exclusivamente educacional e de pesquisa**.
+
+**Ele NÃO incentiva apostas.** Leia o [DISCLAIMER.md](./DISCLAIMER.md) completo.
+
+**Resumo em uma frase:**
+> O Jogo do Bicho é estatisticamente uniforme. Nenhum software pode prever
+> resultados. Este projeto existe para **desmontar a ilusão com ciência**,
+> não para alimentá-la.
+
+---
+
+## 📊 O que este projeto faz
+
+- Carrega dados históricos de loterias (formato CSV)
+- Processa **milhares, centenas, dezenas e grupos**
+- Calcula **frequência, atraso, recência e padrões**
+- Roda **backtests honestos** (realista + otimista)
+- Aplica **testes estatísticos** (chi², z-score)
+- Visualiza tudo em um **dashboard interativo** (Streamlit)
+
+---
+
+## 🎯 O que este projeto **NÃO** faz
+
+- ❌ Não prevê o próximo resultado
+- ❌ Não promete "dicas infalíveis"
+- ❌ Não explora "falhas do jogo"
+- ❌ Não incentiva apostas
+
+**Motivo:** os dados não mentem. O jogo é justo. Fingir o contrário seria
+charlatanismo.
+
+---
 
 ## 🚀 Como usar
 
-### Local
+### 1. Instalar dependências
 
-1. Clone o repositório
-2. `pip install -r requirements.txt`
-3. `streamlit run dashboard_streamlit.py`
-
-### Online
-
-Acesse: (link será adicionado após publicação)
-
-## 📁 Estrutura
-
-- `dashboard_streamlit.py` — Dashboard principal
-- `motor/` — Módulos de análise
-- `dados/` — CSVs do histórico
-- `.streamlit/config.toml` — Tema visual
-
-## ⚠️ Aviso importante
-
-Este projeto é para **análise estatística e curiosidade**.
-**Não há padrão preditivo** — o jogo é estatisticamente uniforme
-(chi² = 19.74, p = 0.71). Apostar tem retorno esperado **negativo**.
-
-## 📜 Licença
-
-Uso livre para fins educacionais.
+```bash
+pip install -r requirements.txt
